@@ -1,4 +1,4 @@
-import { asc, eq, isNull, or } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { db } from "@/db";
@@ -11,10 +11,12 @@ export async function GET() {
   try {
     const session = await auth();
     const user = await getOrCreateUser(session);
+    if (!user) return NextResponse.json([]);
+
     const library = await db
       .select()
       .from(songs)
-      .where(user ? or(eq(songs.userId, user.id), isNull(songs.userId)) : isNull(songs.userId))
+      .where(eq(songs.userId, user.id))
       .orderBy(asc(songs.title));
     return NextResponse.json(library);
   } catch (error) {

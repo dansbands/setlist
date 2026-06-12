@@ -19,5 +19,7 @@ export function parseDuration(value: string) {
   const parsedMinutes = Number.parseInt(minutes, 10);
   const parsedSeconds = Number.parseInt(seconds, 10);
   if (Number.isNaN(parsedMinutes) || Number.isNaN(parsedSeconds)) return 0;
-  return parsedMinutes * 60 + Math.min(parsedSeconds, 59);
+  const safeMinutes = Math.max(0, parsedMinutes);
+  const safeSeconds = Math.max(0, Math.min(parsedSeconds, 59));
+  return safeMinutes * 60 + safeSeconds;
 }

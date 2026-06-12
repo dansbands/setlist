@@ -16,6 +16,11 @@ export async function getOrCreateUser(session: Session | null) {
       email,
       name: session.user?.name ?? null,
     })
+    .onConflictDoNothing({ target: users.email })
     .returning();
-  return created;
+
+  if (created) return created;
+
+  const [after] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return after ?? null;
 }

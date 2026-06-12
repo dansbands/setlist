@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 CREATE TABLE "setlist_items" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"setlist_id" uuid NOT NULL,

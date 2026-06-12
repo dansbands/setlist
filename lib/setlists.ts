@@ -70,10 +70,10 @@ export async function getSetlist(slug: string): Promise<SetlistWithItems | null>
       songId: row.songId,
       title: row.title ?? "Untitled song",
       artist: row.artist ?? "",
-      key: row.keyOverride || row.defaultKey || "",
-      tempo: row.tempoOverride || row.defaultTempo || 0,
-      durationSeconds: row.durationOverride || row.defaultDurationSeconds || 0,
-      notes: row.notesOverride || row.songNotes || "",
+      key: row.keyOverride ?? row.defaultKey ?? "",
+      tempo: row.tempoOverride ?? row.defaultTempo ?? 0,
+      durationSeconds: row.durationOverride ?? row.defaultDurationSeconds ?? 0,
+      notes: row.notesOverride ?? row.songNotes ?? ""
       position: row.position,
     })),
   };

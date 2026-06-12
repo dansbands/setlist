@@ -31,9 +31,15 @@ export default async function DashboardPage() {
           Guest setlists still work from their share URL. Signing in adds a private dashboard for
           setlists you create while authenticated.
         </p>
-        <form action={signInWithGoogle} className="mt-8">
-          <Button type="submit">Sign in with Google</Button>
-        </form>
+        {process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET ? (
+          <form action={signInWithGoogle} className="mt-8">
+            <Button type="submit">Sign in with Google</Button>
+          </form>
+        ) : (
+          <p className="mt-8 text-sm text-muted-foreground">
+            Google sign-in is not configured. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable it.
+          </p>
+        )
       </main>
     );
   }
@@ -86,7 +92,7 @@ export default async function DashboardPage() {
                       "No venue or date yet"}
                   </p>
                 </div>
-                <p className="text-sm font-semibold text-primary">{formatDuration(0)}</p>
+                <p className="text-sm font-semibold text-primary">—</p>
               </div>
             </Link>
           ))
