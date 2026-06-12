@@ -211,7 +211,7 @@ export function SetlistEditor({ initialSetlist, printMode = false }: Props) {
               <FileDown className="h-4 w-4" /> Export PDF
             </Button>
             <Button asChild variant="outline" size="sm">
-              <a href={`/s/${initialSetlist.slug}?view=print`} target="_blank">
+              <a href={`/s/${initialSetlist.slug}?view=print`} target="_blank" rel="noreferrer">
                 <Printer className="h-4 w-4" /> Print view
               </a>
             </Button>
