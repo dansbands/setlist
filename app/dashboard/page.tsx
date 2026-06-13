@@ -5,7 +5,6 @@ import { auth, signIn, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 import { setlists } from "@/db/schema";
-import { formatDuration } from "@/lib/utils";
 import { getOrCreateUser } from "@/lib/users";
 
 export default async function DashboardPage() {
@@ -39,7 +38,7 @@ export default async function DashboardPage() {
           <p className="mt-8 text-sm text-muted-foreground">
             Google sign-in is not configured. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable it.
           </p>
-        )
+        )}
       </main>
     );
   }

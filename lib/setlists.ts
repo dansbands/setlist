@@ -73,7 +73,7 @@ export async function getSetlist(slug: string): Promise<SetlistWithItems | null>
       key: row.keyOverride ?? row.defaultKey ?? "",
       tempo: row.tempoOverride ?? row.defaultTempo ?? 0,
       durationSeconds: row.durationOverride ?? row.defaultDurationSeconds ?? 0,
-      notes: row.notesOverride ?? row.songNotes ?? ""
+      notes: row.notesOverride ?? row.songNotes ?? "",
       position: row.position,
     })),
   };
