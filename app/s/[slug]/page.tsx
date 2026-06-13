@@ -3,13 +3,13 @@ import { SetlistEditor } from "@/components/setlist/setlist-editor";
 import { getSetlist } from "@/lib/setlists";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { view?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ view?: string }>;
 };
 
 export default async function SetlistPage({ params, searchParams }: Props) {
-  const { slug } = params;
-  const { view } = searchParams;
+  const { slug } = await params;
+  const { view } = await searchParams;
   const setlist = await getSetlist(slug);
 
   if (!setlist) {
